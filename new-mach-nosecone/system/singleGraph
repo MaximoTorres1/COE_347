@@ -1,0 +1,77 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  7
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      sample;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+type sets;
+libs            ("libsampling.so");
+
+interpolationScheme cell;
+
+setFormat       raw;
+
+writeControl    writeTime; // this ensures that it's writing only at writeInterval
+
+sets
+(
+
+    // make sure to change (x1 y1 z1) and (x2 y2 z2) to
+    // the coordinates of the start and end points
+
+    lineOuterUp 
+    {
+        type    lineCell;
+        axis    xyz;
+        start   (0 0 0);
+        end     (10 3.4642 0);
+    }
+
+    lineOuterLower
+    {
+        type    lineCell;
+        axis    xyz;
+        start   (0 0 0);
+        end     (10 -3.4642 0);
+    }
+
+    linePi4
+    {
+        type    lineCell;
+        axis    xyz;
+        start   (0 0 0);
+        end     (0.7072 0.7072 0);
+    }
+
+    line3Pi4
+    {
+        type    lineCell;
+        axis    xyz;
+        start   (0 0 0);
+        end     (-0.7072 0.7072 0);
+    }
+
+    vertline
+    {
+        type    lineCell;
+        axis    xyz;
+        start   (30 20.001 0);
+        end     (-30 20.001 0);
+    }
+);
+
+fields          ( p U );
+
+
+// ************************************************************************* //
